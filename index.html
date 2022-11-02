@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            window['onerror'] = function (message, url, lineNumber) {
+		      alert("ERROR " + message + " Line " + lineNumber + " URL " + url);
+		    };
+        </script>
+        
+		<meta charset="UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>    
+    <body onresize = "setCellSize()" onbeforeunload = "saveGame()">
+        <div id="menu" class="menu">
+            
+            
+<!--            ////////  BOARD PARAMETERS  //////////-->
+            
+            <fieldset id="g-size-field" class="board-params">
+                <legend>Game Size</legend>
+                <div id="g-size">
+                    <select name="game_size" id="board-size" class="g_size" onchange="setMinNumRange()">
+                        <option value="20">20x20</option>
+                        <option value="19">19x19</option>
+                        <option value="18">18x18</option>
+                        <option value="17">17x17</option>
+                        <option value="16">16x16</option>
+                        <option value="15" selected>15x15</option>
+                        <option value="14">14x14</option>
+                        <option value="13">13x13</option>
+                        <option value="12">12x12</option>
+                        <option value="11">11x11</option>
+                        <option value="10">10x10</option>
+                        <option value="9">9x9</option>
+                        <option value="8">8x8</option>
+                        <option value="7">7x7</option>
+                        <option value="6">6x6</option>
+                        <option value="5">5x5</option>
+                        <option value="4">4x4</option>
+                        <option value="3">3x3</option>
+                    </select>
+
+                    <input type="number" min="5" max="10" value="5" id="min-num" class="g_size">
+                </div>
+            </fieldset>            
+            
+            <fieldset id="zoom-field" class="board-params">
+                <legend>Zoom</legend>
+                <div id="zoom">
+                                        
+                    <input type="button" value="Fit" id="zoom-fit" class="zoom" onclick="setCellSize(0)" disabled>
+                    <input type="button" value="+" id="zoom-in" class="zoom" onclick="setCellSize(1)" disabled>
+                    <input type="button" value="-" id="zoom-out" class="zoom" onclick="setCellSize(-1)" disabled>
+                    
+                </div>
+            </fieldset>
+            
+            
+<!--
+            ///////// PLAYERS /////////
+            
+            ///P1///
+-->
+            
+            <fieldset id="player1-field" class="players">
+            <legend>X Player</legend>
+                
+                <fieldset id="p1-person-params" class="person-field pl-params">
+                <legend class="pl-params">Person</legend>
+                    
+                    <input type="radio" name="p1" value="0" id="p1-person" onchange="getPlayers(1, this.value)" checked>
+                    <label for="p1-person"> Person </label> 
+                    <br>
+<!--                    <input type="radio" name="p1" value="p_k" id="p1-key" onchange="getPlayers(1, this.value)" >-->
+<!--                    <label for="p1-key"> Keyboard </label> -->
+                </fieldset>
+                  
+                
+                <fieldset id="p1-comp-params" class="computer-field pl-params">
+                <legend class="pl-params">Computer</legend>
+                    
+                    <input type="radio" name="p1" value="111" id="p1-hard" onchange="getPlayers(1, this.value)" >
+                    <label for="p1-hard"> Hard </label> 
+                    <br>
+                    <input type="radio" name="p1" value="11" id="p1-medium" onchange="getPlayers(1, this.value)" >
+                    <label for="p1-medium"> Medium </label> 
+                    <br>
+                    <input type="radio" name="p1" value="1" id="p1-easy" onchange="getPlayers(1, this.value)" >
+                    <label for="p1-easy"> Easy </label> 
+                </fieldset>
+                        
+            </fieldset>
+           
+
+            
+<!--            ///P2///-->
+            
+            <fieldset id="player2-field" class="players">
+            <legend>O Player</legend>
+                
+                <fieldset id="p2-person-params" class="person-field pl-params">
+                <legend class="pl-params">Person</legend>
+
+                    <input type="radio" name="p2" value="0" id="p2-person" onchange="getPlayers(-1, this.value)">
+                    <label for="p2-person"> Person </label> 
+                    <br>
+<!--                    <input type="radio" name="p2" value="p_k" id="p2-key" onchange="getPlayers(-1, this.value)">-->
+<!--                    <label for="p2-key"> Keyboard </label> -->
+                </fieldset>
+
+
+                <fieldset id="p2-comp-params" class="computer-field pl-params">
+                <legend class="pl-params">Computer</legend>
+
+                    <input type="radio" name="p2" value="111" id="p2-hard" onchange="getPlayers(-1, this.value)" checked>
+                    <label for="p2-hard"> Hard </label> 
+                    <br>
+                    <input type="radio" name="p2" value="11" id="p2-medium" onchange="getPlayers(-1, this.value)">
+                    <label for="p2-medium"> Medium </label> 
+                    <br>
+                    <input type="radio" name="p2" value="1" id="p2-easy" onchange="getPlayers(-1, this.value)">
+                    <label for="p2-easy"> Easy </label> 
+                </fieldset>
+                        
+            </fieldset>
+
+            
+            <input type="button" id="start-btn" onclick="unlockMenu()" value="Start Game!">
+
+        </div>
+
+        <div id="arrow" class="arrow hidden" onclick="showMenu()"></div>
+
+        <div id="cont" class="container hidden"></div>        
+
+        <script src="script/script.js"></script>
+    </body>
+</html>
